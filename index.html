@@ -21,6 +21,7 @@
     --text: #F0EDE8;
     --dim: #888;
     --green: #39D353;
+    --blue: #00BFFF;
     --font-display: 'Arial Black', 'Arial Bold', Impact, sans-serif;
     --font-cond: 'Arial Narrow', Arial, sans-serif;
     --font-body: Arial, Helvetica, sans-serif;
@@ -156,6 +157,7 @@
   .day-tab:last-child { border-right: none; }
   .day-tab:hover { background: var(--steel); }
   .day-tab.active { background: var(--fire); }
+  .day-tab.active-bs { background: #007B55; }
   .day-tab .day-num {
     font-family: var(--font-display);
     font-size: 24px;
@@ -169,7 +171,8 @@
     color: rgba(240,237,232,0.6);
     margin-top: 2px;
   }
-  .day-tab.active .day-label { color: rgba(255,255,255,0.85); }
+  .day-tab.active .day-label,
+  .day-tab.active-bs .day-label { color: rgba(255,255,255,0.85); }
   .day-tab .day-type { font-size: 16px; margin-top: 4px; }
 
   /* MAIN CONTENT */
@@ -190,12 +193,18 @@
     border-left: 4px solid var(--fire);
     padding-left: 16px;
   }
+  .day-header.bs-header {
+    border-left-color: #00C97A;
+  }
   .day-header .big-day {
     font-family: var(--font-display);
     font-size: 68px;
     line-height: 1;
     color: var(--fire);
     font-weight: 900;
+  }
+  .day-header.bs-header .big-day {
+    color: #00C97A;
   }
   .day-header-text h2 {
     font-family: var(--font-display);
@@ -222,6 +231,28 @@
     padding: 3px 8px;
     margin-top: 6px;
   }
+  .bs-badge {
+    display: inline-block;
+    background: #00C97A;
+    color: #000;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 6px;
+  }
+  .pulley-badge {
+    display: inline-block;
+    background: var(--blue);
+    color: #000;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-top: 6px;
+  }
 
   /* EXERCISES */
   .exercises { display: flex; flex-direction: column; gap: 10px; }
@@ -236,6 +267,12 @@
     gap: 12px;
     transition: border-color 0.2s, background 0.2s;
   }
+  .exercise-card.bs-card {
+    border-left-color: #00C97A;
+  }
+  .exercise-card.pulley-card {
+    border-left-color: var(--blue);
+  }
   .exercise-card:active { background: var(--muted); }
   .ex-num {
     font-family: var(--font-display);
@@ -244,6 +281,8 @@
     line-height: 1;
     font-weight: 900;
   }
+  .bs-card .ex-num { color: #00C97A; }
+  .pulley-card .ex-num { color: var(--blue); }
   .ex-name {
     font-weight: 700;
     font-size: 15px;
@@ -256,6 +295,8 @@
     font-style: italic;
     margin-top: 3px;
   }
+  .bs-card .ex-note { color: #00C97A; }
+  .pulley-card .ex-note { color: var(--blue); }
   .ex-sets {
     text-align: right;
     font-weight: 600;
@@ -271,6 +312,60 @@
     font-weight: 900;
   }
   .ex-rest { font-size: 10px; color: var(--dim); margin-top: 2px; }
+
+  /* BLOOD SUGAR INFO BOX */
+  .bs-info-box {
+    background: linear-gradient(135deg, #001f12, #0a2a1a);
+    border: 1px solid rgba(0,201,122,0.3);
+    border-top: 3px solid #00C97A;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .bs-info-box h3 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: #00C97A;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .bs-info-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: rgba(240,237,232,0.85);
+    align-items: flex-start;
+  }
+  .bs-dot { width: 6px; height: 6px; background: #00C97A; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+
+  /* PULLEY INFO BOX */
+  .pulley-info-box {
+    background: linear-gradient(135deg, #001825, #0a1e2e);
+    border: 1px solid rgba(0,191,255,0.3);
+    border-top: 3px solid var(--blue);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pulley-icon { font-size: 32px; flex-shrink: 0; }
+  .pulley-info-box p { font-size: 13px; color: rgba(240,237,232,0.8); line-height: 1.5; }
+  .pulley-info-box strong { color: var(--blue); }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    font-family: var(--font-cond);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dim);
+    border-top: 1px solid var(--muted);
+    padding-top: 14px;
+    margin: 20px 0 12px;
+  }
 
   /* REST DAY */
   .rest-card {
@@ -418,6 +513,7 @@
     .day-header .big-day { font-size: 48px; }
     .safety-strip { flex-direction: column; gap: 10px; }
     .timer-bar { gap: 8px; font-size: 10px; }
+    .pulley-info-box { flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
@@ -437,7 +533,7 @@
 <div class="hero">
   <div class="hero-tag">⚡ Weekly Training System</div>
   <h1>T-BOOST<br><span>PROTOCOL</span></h1>
-  <div class="hero-sub">Testosterone Optimization · Fat Incineration · Raw Strength</div>
+  <div class="hero-sub">Testosterone Optimization · Fat Incineration · Raw Strength · Blood Sugar Control</div>
 </div>
 
 <!-- TIMER BAR -->
@@ -458,6 +554,7 @@
   <div class="day-tab" onclick="showDay(4)"><div class="day-num">5</div><div class="day-label">Shoulders</div><div class="day-type">🔥</div></div>
   <div class="day-tab" onclick="showDay(5)"><div class="day-num">6</div><div class="day-label">Full Body</div><div class="day-type">💪</div></div>
   <div class="day-tab" onclick="showDay(6)"><div class="day-num">7</div><div class="day-label">Rest</div><div class="day-type">😌</div></div>
+  <div class="day-tab" onclick="showDay(7)" style="border-left: 2px solid #00C97A;"><div class="day-num" style="color:#00C97A;">+</div><div class="day-label">Blood Sugar</div><div class="day-type">🩸</div></div>
 </div>
 
 <!-- DAY PANELS -->
@@ -487,9 +584,20 @@
     <div class="exercises">
       <div class="exercise-card"><div class="ex-num">1</div><div><div class="ex-name">Barbell Bent Over Row</div></div><div class="ex-sets"><span class="sets-big">4×8–12</span></div></div>
       <div class="exercise-card"><div class="ex-num">2</div><div><div class="ex-name">One Arm Dumbbell Row</div></div><div class="ex-sets"><span class="sets-big">3×12/arm</span></div></div>
-      <div class="exercise-card"><div class="ex-num">3</div><div><div class="ex-name">Barbell Deadlift</div><div class="ex-note">🔥 Maximum testosterone trigger — form first!</div></div><div class="ex-sets"><span class="sets-big">4×6–8</span><div class="ex-rest">Rest: 90–120s</div></div></div>
-      <div class="exercise-card"><div class="ex-num">4</div><div><div class="ex-name">Barbell Curl</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
-      <div class="exercise-card"><div class="ex-num">5</div><div><div class="ex-name">Dumbbell Hammer Curl</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
+
+      <!-- PULLEY SECTION -->
+      <div class="section-divider">🔵 Ceiling Pulley Exercises</div>
+      <div class="pulley-info-box">
+        <div class="pulley-icon">🪝</div>
+        <p>Your ceiling pulley works perfectly as a <strong>Lat Pulldown machine</strong>. Sit or kneel directly below, grip the rope/bar wide, and pull down to chest level. Control the weight back up slowly.</p>
+      </div>
+      <div class="exercise-card pulley-card"><div class="ex-num">3</div><div><div class="ex-name">Ceiling Pulley Lat Pulldown (Wide Grip)</div><div class="ex-note">🔵 Sit/kneel below pulley — pull to upper chest — 3 sec return</div></div><div class="ex-sets"><span class="sets-big">4×10–12</span><div class="ex-rest">Rest: 60s</div></div></div>
+      <div class="exercise-card pulley-card"><div class="ex-num">4</div><div><div class="ex-name">Ceiling Pulley Close Grip Pulldown</div><div class="ex-note">🔵 Hands close together — full lat stretch at top</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
+      <div class="exercise-card pulley-card"><div class="ex-num">5</div><div><div class="ex-name">Ceiling Pulley Straight Arm Pulldown</div><div class="ex-note">🔵 Arms nearly straight — isolates lats — slow and controlled</div></div><div class="ex-sets"><span class="sets-big">3×15</span></div></div>
+
+      <div class="section-divider">💪 Biceps Finisher</div>
+      <div class="exercise-card"><div class="ex-num">6</div><div><div class="ex-name">Barbell Curl</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
+      <div class="exercise-card"><div class="ex-num">7</div><div><div class="ex-name">Dumbbell Hammer Curl</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
     </div>
   </div>
 
@@ -546,8 +654,15 @@
       <div class="exercise-card"><div class="ex-num">1</div><div><div class="ex-name">Barbell Overhead Press</div><div class="ex-note">Compound T-booster — press heavy</div></div><div class="ex-sets"><span class="sets-big">4×8–10</span></div></div>
       <div class="exercise-card"><div class="ex-num">2</div><div><div class="ex-name">Dumbbell Lateral Raise</div></div><div class="ex-sets"><span class="sets-big">3×12–15</span></div></div>
       <div class="exercise-card"><div class="ex-num">3</div><div><div class="ex-name">Dumbbell Front Raise</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
-      <div class="exercise-card"><div class="ex-num">4</div><div><div class="ex-name">Barbell Curl</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
-      <div class="exercise-card"><div class="ex-num">5</div><div><div class="ex-name">Dumbbell Triceps Kickback</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
+
+      <!-- PULLEY SECTION DAY 5 -->
+      <div class="section-divider">🔵 Ceiling Pulley — Shoulder Isolation</div>
+      <div class="exercise-card pulley-card"><div class="ex-num">4</div><div><div class="ex-name">Ceiling Pulley Face Pull</div><div class="ex-note">🔵 Pull rope to face — elbows high — rear delts + rotator cuff</div></div><div class="ex-sets"><span class="sets-big">3×15</span><div class="ex-rest">Rest: 45s</div></div></div>
+      <div class="exercise-card pulley-card"><div class="ex-num">5</div><div><div class="ex-name">Ceiling Pulley Upright Row</div><div class="ex-note">🔵 Pull handle up to chin level — traps + shoulders</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
+
+      <div class="section-divider">💪 Arms Finisher</div>
+      <div class="exercise-card"><div class="ex-num">6</div><div><div class="ex-name">Barbell Curl</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
+      <div class="exercise-card"><div class="ex-num">7</div><div><div class="ex-name">Dumbbell Triceps Kickback</div></div><div class="ex-sets"><span class="sets-big">3×12</span></div></div>
     </div>
   </div>
 
@@ -561,7 +676,7 @@
       <div class="exercise-card"><div class="ex-num">1</div><div><div class="ex-name">Deadlift</div><div class="ex-note">🔥 Heavy — top testosterone movement</div></div><div class="ex-sets"><span class="sets-big">4×5–6</span><div class="ex-rest">Rest: 2–3 min</div></div></div>
       <div class="exercise-card"><div class="ex-num">2</div><div><div class="ex-name">Barbell Squats</div></div><div class="ex-sets"><span class="sets-big">3×8</span></div></div>
       <div class="exercise-card"><div class="ex-num">3</div><div><div class="ex-name">Push-Ups</div><div class="ex-note">To failure — no mercy</div></div><div class="ex-sets"><span class="sets-big">3×Fail</span></div></div>
-      <div class="exercise-card"><div class="ex-num">4</div><div><div class="ex-name">Bent Over Row</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
+      <div class="exercise-card pulley-card"><div class="ex-num">4</div><div><div class="ex-name">Ceiling Pulley Lat Pulldown</div><div class="ex-note">🔵 Full lat pull — wide grip — slow controlled reps</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
       <div class="exercise-card"><div class="ex-num">5</div><div><div class="ex-name">Shoulder Press</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
     </div>
   </div>
@@ -585,6 +700,118 @@
     <div style="background: var(--steel); border: 1px solid rgba(255,180,0,0.3); padding: 20px; margin-top: 12px; text-align:center;">
       <div style="font-family: var(--font-display); font-size: 32px; color: var(--gold); font-weight:900;">REST = GROWTH</div>
       <div style="font-size: 13px; color: var(--dim); margin-top: 6px;">Muscles don't grow in the gym — they grow when you rest and eat well.</div>
+    </div>
+  </div>
+
+  <!-- DAY 8 — BLOOD SUGAR CONTROL -->
+  <div class="day-panel" id="panel-7">
+    <div class="day-header bs-header">
+      <div class="big-day">BS</div>
+      <div class="day-header-text">
+        <h2>Blood Sugar Control</h2>
+        <p>Metabolic Health · Insulin Sensitivity · Glucose Regulation</p>
+        <div class="bs-badge">🩸 Add Anytime — 2–3× Per Week</div>
+      </div>
+    </div>
+
+    <div class="bs-info-box">
+      <h3>🩸 Why This Matters</h3>
+      <div class="bs-info-item"><div class="bs-dot"></div><div>Exercise is one of the most powerful tools to lower blood sugar — muscles absorb glucose directly without insulin during activity.</div></div>
+      <div class="bs-info-item"><div class="bs-dot"></div><div>Best time: <strong>30–60 min after a meal</strong> — catches the blood sugar spike before it peaks.</div></div>
+      <div class="bs-info-item"><div class="bs-dot"></div><div>Even a 10-minute walk after eating reduces post-meal blood sugar significantly.</div></div>
+      <div class="bs-info-item"><div class="bs-dot"></div><div>Mix: <strong>Resistance training</strong> improves long-term insulin sensitivity. <strong>Cardio</strong> burns glucose immediately.</div></div>
+    </div>
+
+    <div class="section-divider">🔥 Phase 1 — Warm-Up (5 min)</div>
+    <div class="exercises">
+      <div class="exercise-card bs-card"><div class="ex-num">W</div><div><div class="ex-name">Brisk Walking / March on Spot</div><div class="ex-note">Get blood flowing — raise heart rate gently</div></div><div class="ex-sets"><span class="sets-big">5 min</span></div></div>
+    </div>
+
+    <div class="section-divider">⚡ Phase 2 — Resistance (Burns Glucose + Builds Muscle)</div>
+    <div class="exercises">
+      <div class="exercise-card bs-card"><div class="ex-num">1</div><div><div class="ex-name">Bodyweight Squats</div><div class="ex-note">Large leg muscles = massive glucose absorption — go slow</div></div><div class="ex-sets"><span class="sets-big">3×15</span><div class="ex-rest">Rest: 30–45s</div></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">2</div><div><div class="ex-name">Dumbbell Romanian Deadlift</div><div class="ex-note">Posterior chain activation — boosts insulin sensitivity</div></div><div class="ex-sets"><span class="sets-big">3×12</span><div class="ex-rest">Rest: 45s</div></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">3</div><div><div class="ex-name">Walking Lunges</div><div class="ex-note">Multi-joint movement — burns glucose efficiently</div></div><div class="ex-sets"><span class="sets-big">3×10/leg</span></div></div>
+      <div class="exercise-card pulley-card"><div class="ex-num">4</div><div><div class="ex-name">Ceiling Pulley Lat Pulldown — Slow Tempo</div><div class="ex-note">🔵 4 sec down, 1 sec hold, 2 sec up — maximizes muscle glucose use</div></div><div class="ex-sets"><span class="sets-big">3×12</span><div class="ex-rest">Rest: 45s</div></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">5</div><div><div class="ex-name">Push-Ups (Slow)</div><div class="ex-note">Upper body resistance — 3 sec down, pause, press up</div></div><div class="ex-sets"><span class="sets-big">3×10</span></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">6</div><div><div class="ex-name">Plank Hold</div><div class="ex-note">Core stability — activates multiple muscle groups at once</div></div><div class="ex-sets"><span class="sets-big">3×45s</span></div></div>
+    </div>
+
+    <div class="section-divider">🫀 Phase 3 — Cardio Burst (Immediate Glucose Burn)</div>
+    <div class="exercises">
+      <div class="exercise-card bs-card"><div class="ex-num">7</div><div><div class="ex-name">Jumping Jacks</div><div class="ex-note">Elevate heart rate — burns blood glucose fast</div></div><div class="ex-sets"><span class="sets-big">3×30s</span><div class="ex-rest">Rest: 30s</div></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">8</div><div><div class="ex-name">High Knees (Marching)</div><div class="ex-note">Intense but joint-friendly — keep it controlled</div></div><div class="ex-sets"><span class="sets-big">3×30s</span></div></div>
+      <div class="exercise-card bs-card"><div class="ex-num">9</div><div><div class="ex-name">Step Touch Side to Side</div><div class="ex-note">Low impact cardio — safe and effective glucose burn</div></div><div class="ex-sets"><span class="sets-big">2×60s</span></div></div>
+    </div>
+
+    <div class="section-divider">🌬️ Phase 4 — Cool Down (5 min)</div>
+    <div class="exercises">
+      <div class="exercise-card bs-card"><div class="ex-num">C</div><div><div class="ex-name">Slow Walking + Deep Breathing</div><div class="ex-note">Let heart rate come down gradually — do NOT sit immediately</div></div><div class="ex-sets"><span class="sets-big">5 min</span></div></div>
+    </div>
+
+    <!-- Blood Sugar Nutrition -->
+    <div class="section-title" style="color:#00C97A;">🩸 Blood Sugar — Eat Right</div>
+    <div class="nutrition-row">
+      <div class="nut-box" style="border-top: 3px solid #00C97A;">
+        <h3>✅ Eat This</h3>
+        <div class="nut-item"><span>🥗</span> Non-starchy vegetables (spinach, broccoli, beans)</div>
+        <div class="nut-item"><span>🥚</span> Protein at every meal (eggs, dal, chicken)</div>
+        <div class="nut-item"><span>🥜</span> Nuts + seeds — healthy fats slow glucose rise</div>
+        <div class="nut-item"><span>🍋</span> Apple cider vinegar (1 tbsp in water before meals)</div>
+        <div class="nut-item"><span>🌾</span> Brown rice or chapati over white rice</div>
+        <div class="nut-item"><span>💧</span> 3L+ water daily — hydration improves insulin response</div>
+      </div>
+      <div class="nut-box" style="border-top: 3px solid var(--fire);">
+        <h3>❌ Avoid This</h3>
+        <div class="nut-item"><span>🍬</span> Sugary drinks, juices, maida, biscuits</div>
+        <div class="nut-item"><span>🍚</span> Eating large rice portions alone — pair with protein</div>
+        <div class="nut-item"><span>🍺</span> Alcohol — massive blood sugar disruption</div>
+        <div class="nut-item"><span>😴</span> Sitting immediately after eating — take a walk</div>
+        <div class="nut-item"><span>⏰</span> Skipping meals — causes blood sugar crashes</div>
+        <div class="nut-item"><span>🛌</span> Eating heavy meals late at night</div>
+      </div>
+    </div>
+
+    <!-- BS Tips -->
+    <div class="t-tips" style="background: linear-gradient(135deg, #001a0d, var(--steel)); border-color: rgba(0,201,122,0.3);">
+      <h3 style="color:#00C97A;">🩸 Blood Sugar Control Tips</h3>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Walk 10–15 min after every meal</strong> — most effective single habit to reduce post-meal blood sugar spikes.</div></div>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Leg day is your best medicine.</strong> Large leg muscles are the body's biggest glucose sink — squats and lunges are blood sugar killers.</div></div>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Eat protein first</strong> during meals, then vegetables, then carbs — this order reduces glucose spike by up to 30%.</div></div>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Sleep is non-negotiable.</strong> Even one night of poor sleep raises blood sugar the next morning due to cortisol.</div></div>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Never exercise on an empty stomach</strong> if you have low blood sugar episodes — eat a small snack 20 min before.</div></div>
+      <div class="t-tip-item"><div class="bs-dot" style="background:#00C97A;"></div><div><strong>Consistency beats intensity.</strong> 30 min of moderate exercise daily beats one brutal session per week for blood sugar control.</div></div>
+    </div>
+
+    <!-- Warning -->
+    <div style="background: var(--steel); border: 1px solid rgba(255,180,0,0.4); border-left: 4px solid var(--gold); padding: 16px 20px; margin-top: 20px;">
+      <div style="font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;">⚠️ Important Note</div>
+      <div style="font-size: 13px; color: rgba(240,237,232,0.8); line-height: 1.6;">If you are diabetic or pre-diabetic, consult your doctor before starting this protocol. Monitor your blood sugar before and after workouts. Carry a small snack during exercise in case of low blood sugar. This plan is designed for general fitness — not a replacement for medical treatment.</div>
+    </div>
+  </div>
+
+  <!-- PULLEY GUIDE (always visible) -->
+  <div class="section-title" style="color: var(--blue);">🔵 Ceiling Pulley Setup Guide</div>
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 28px;">
+    <div class="prog-card" style="border-top-color: var(--blue);">
+      <div class="icon">🪑</div>
+      <h4>Position</h4>
+      <p>Sit on a chair or kneel directly below the pulley. Keep back straight. Grip the rope or bar at shoulder width or wider.</p>
+    </div>
+    <div class="prog-card" style="border-top-color: var(--blue);">
+      <div class="icon">🎯</div>
+      <h4>Movement</h4>
+      <p>Pull down to upper chest. Elbows drive down and back. Squeeze lats at bottom. Let weight rise slowly — 3 sec return.</p>
+    </div>
+    <div class="prog-card" style="border-top-color: var(--blue);">
+      <div class="icon">⚖️</div>
+      <h4>Load</h4>
+      <p>Use a weight you can control for full range of motion. Increase load weekly. Avoid swinging the body to cheat reps.</p>
+    </div>
+    <div class="prog-card" style="border-top-color: var(--blue);">
+      <div class="icon">🔁</div>
+      <h4>Variations</h4>
+      <p>Wide grip = outer lats. Close grip = inner lats + biceps. Underhand grip = more bicep. Face pull = rear delts.</p>
     </div>
   </div>
 
@@ -632,16 +859,22 @@
     <div class="safety-item"><span>🛑</span> Stop on sharp pain</div>
     <div class="safety-item"><span>💨</span> Breathe every rep</div>
     <div class="safety-item"><span>⏱</span> 45–70 min max</div>
+    <div class="safety-item"><span>🔵</span> Check pulley anchor before use</div>
   </div>
 
-  <div class="footer">T-BOOST PROTOCOL · Repeat Weekly · Progressive Overload Every Week</div>
+  <div class="footer">T-BOOST PROTOCOL · Repeat Weekly · Progressive Overload Every Week · Blood Sugar Protocol 2–3× Weekly</div>
 </div>
 
 <script>
   // Day switching
   function showDay(index) {
     document.querySelectorAll('.day-panel').forEach((p, i) => p.classList.toggle('visible', i === index));
-    document.querySelectorAll('.day-tab').forEach((t, i) => t.classList.toggle('active', i === index));
+    document.querySelectorAll('.day-tab').forEach((t, i) => {
+      t.classList.remove('active', 'active-bs');
+      if (i === index) {
+        t.classList.add(index === 7 ? 'active-bs' : 'active');
+      }
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
